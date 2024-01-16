@@ -1,0 +1,92 @@
+.leftNavIcons {
+  padding: 5px;
+  background: #ececec;
+  font-size: 20px;
+}
+section {
+  border: 1px solid #cfcece;
+  border-radius: 10px;
+  padding: 22px 30px;
+}
+.myPhoto {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  border: 2px solid black;
+  margin-right: 50px;
+}
+.aboutMe {
+  margin-top: 4vh;
+  display: flex;
+  width: 100%;
+}
+.aboutMeText {
+  margin: auto auto;
+}
+.aboutMeText h1 {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.aboutMeText p {
+  font-size: 20px;
+  color: gray;
+}
+.mySkills {
+  height: 40vh;
+  display: flex;
+  width: 100%;
+  padding-top: 4vh;
+}
+.mySkills section {
+  width: 48%;
+  margin-right: 2%;
+}
+.mySkills h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.subMySkills {
+  width: 50%;
+  height: 100%;
+}
+.subMySkills section {
+  width: 100%;
+}
+.skills {
+  height: 62%;
+  margin-bottom: 3%;
+}
+.resume {
+  height: 30%;
+}
+.highlight {
+  background-color: black;
+  color: white;
+  box-shadow: 27px 20px 0px #bdbdbd, 55px 40px 0px #e7e7e7;
+  height: 73%;
+  width: 90%;
+  padding: 3vh;
+  margin-top: 1vh;
+}
+.highlight h2 {
+  border: 1px solid #636364;
+  padding: 4px;
+  display: inline-block;
+  color: #636364;
+}
+.highlight h3 {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.highlight a {
+  float: right;
+  border: 1px solid white;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
