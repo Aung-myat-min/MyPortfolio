@@ -86,11 +86,6 @@ export default function Project() {
         style={{ width: "48%", height: "84vh" }}
       >
         <h1 className="text-center mt-3 font-bold text-3xl">My Projects</h1>
-        <MyProject
-          languages={[]}
-          projecttitle="My Portfolio"
-          description="This is my portfolio website."
-        />
         {projectData.projectTitles.map((projectTitle, index) => (
           <MyProject
             languages={languagesData[projectTitle] || []} // Use languages from state
