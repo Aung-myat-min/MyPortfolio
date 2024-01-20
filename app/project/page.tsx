@@ -1,19 +1,81 @@
+"use client";
+import { useState, useEffect } from "react";
+import MyProject from "./components/project";
+import axios from "axios";
+import myLogo from "../../public/MyLOGO.jpg";
+import Image from "next/image";
+import "./page.css";
+
 export default function Project() {
+  const [projectData, setProjectData] = useState({
+    projectTitles: [] as string[],
+    descriptions: [] as string[],
+  });
+
+  const [languagesData, setLanguagesData] = useState(
+    {} as {
+      [key: string]: string[];
+    }
+  ); // State to store languages data
+
+  useEffect(() => {
+    axios
+      .get("https://api.github.com/users/Aung-myat-min/repos")
+      .then((response) => {
+        const projectTitles = response.data.map((repo: any) => repo.name);
+        const descriptions = response.data.map((repo: any) => repo.description);
+
+        setProjectData({ projectTitles, descriptions });
+
+        // Fetch languages for each repository
+        const fetchLanguagesPromises = projectTitles.map(
+          (projectTitle: string) =>
+            axios.get(
+              `https://api.github.com/repos/Aung-myat-min/${projectTitle}/languages`
+            )
+        );
+
+        Promise.all(fetchLanguagesPromises)
+          .then((languagesResponses) => {
+            const languagesData: { [key: string]: string[] } = {};
+            languagesResponses.forEach((languagesResponse, index) => {
+              const projectTitle = projectTitles[index];
+              const languages = Object.keys(languagesResponse.data);
+              languagesData[projectTitle] = languages;
+            });
+            setLanguagesData(languagesData);
+          })
+          .catch((error) => {
+            console.error("Error fetching languages:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error fetching repositories:", error);
+      });
+  }, []);
+
   return (
     <div className="flex justify-between" style={{ margin: "22px 0" }}>
       <div
         className="border rounded-xl"
         style={{ width: "48%", height: "84vh" }}
       >
-        <div style={{ margin: "65% 0 0 5%" }}>
+        <Image
+          src={myLogo}
+          alt="My logo"
+          width={200}
+          height={200}
+          id="myLogo"
+        />
+        <div style={{ margin: "5% 0 0 5%" }}>
           <p className="text-4xl font-bold leading-tight">
-            Over past fews years, I've <br />
+            Over the past few years, I&apos;ve <br />
             worked on various projects. <br />
-            Here's few of my best:
+            Here&apos;s a few of my best:
           </p>
           <a
-            href="#"
-            className=" bg-gray-100 w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3"
+            href="mailto:koaungmyatmin0@gmail.com"
+            className="bg-gray-100 w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3"
           >
             Get in touch
           </a>
@@ -23,105 +85,20 @@ export default function Project() {
         className="border rounded-xl overflow-auto"
         style={{ width: "48%", height: "84vh" }}
       >
-        <div className="h-full bg-red-500 rounded-xl flex flex-col justify-around p-5">
-          <div className="flex">
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-          </div>
-          <h1>Movies and TV series guide</h1>
-          <img
-            className="mx-auto rounded-xl"
-            src="https://www.bhmpics.com/downloads/16-9-wallpapers-/10.mountains_sunset_landscape_147439_2560x1440.jpg"
-            alt=""
-            style={{ width: "80%" }}
+        <h1 className="text-center mt-3 font-bold text-3xl">My Projects</h1>
+        <MyProject
+          languages={[]}
+          projecttitle="My Portfolio"
+          description="This is my portfolio website."
+        />
+        {projectData.projectTitles.map((projectTitle, index) => (
+          <MyProject
+            languages={languagesData[projectTitle] || []} // Use languages from state
+            projecttitle={projectTitle}
+            description={projectData.descriptions[index]}
+            key={index}
           />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-            pariatur ea quia fugiat autem atque commodi consequuntur obcaecati,
-            iure distinctio. Quidem maiores delectus ut. Veniam laudantium
-            molestias voluptatem ipsum consectetur?
-          </p>
-          <a
-            href="#"
-            className=" bg-black text-white w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3"
-          >
-            Get in touch
-          </a>
-        </div>
-
-        {/* another project */}
-
-        <div className="h-full bg-red-500 rounded-xl flex flex-col justify-around p-5 mt-5">
-          <div className="flex">
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-          </div>
-          <h1>Movies and TV series guide</h1>
-          <img
-            className="mx-auto rounded-xl"
-            src="https://www.bhmpics.com/downloads/16-9-wallpapers-/10.mountains_sunset_landscape_147439_2560x1440.jpg"
-            alt=""
-            style={{ width: "80%" }}
-          />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-            pariatur ea quia fugiat autem atque commodi consequuntur obcaecati,
-            iure distinctio. Quidem maiores delectus ut. Veniam laudantium
-            molestias voluptatem ipsum consectetur?
-          </p>
-          <a
-            href="#"
-            className=" bg-black text-white w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3"
-          >
-            Get in touch
-          </a>
-        </div>
-        <div className="h-full bg-red-500 rounded-xl flex flex-col justify-around p-5 mt-5">
-          <div className="flex">
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-            <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-              <p>React.js</p>
-            </div>
-          </div>
-          <h1>Movies and TV series guide</h1>
-          <img
-            className="mx-auto rounded-xl"
-            src="https://www.bhmpics.com/downloads/16-9-wallpapers-/10.mountains_sunset_landscape_147439_2560x1440.jpg"
-            alt=""
-            style={{ width: "80%" }}
-          />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-            pariatur ea quia fugiat autem atque commodi consequuntur obcaecati,
-            iure distinctio. Quidem maiores delectus ut. Veniam laudantium
-            molestias voluptatem ipsum consectetur?
-          </p>
-          <a
-            href="#"
-            className=" bg-black text-white w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3"
-          >
-            Get in touch
-          </a>
-        </div>
+        ))}
       </div>
     </div>
   );

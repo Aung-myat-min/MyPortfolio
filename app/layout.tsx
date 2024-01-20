@@ -30,30 +30,39 @@ export default function RootLayout({
         <nav className="w-full bg-white p-4 flex justify-between px-8 rounded-lg border-gray-600 border">
           <h1 className="text-2xl font-bold">AMMtheCoder</h1>
           <div className="flex space-x-7 h-full text-2xl">
-            <a href="#" className="hover:text-gray-400">
+            <a href="/home" className="hover:text-gray-400">
               Home
             </a>
-            <a href="#" className="hover:text-gray-400">
+            <a href="/project" className="hover:text-gray-400">
               Projects
             </a>
-            <a href="#" className="hover:text-gray-400">
+            <a href="resume" className="hover:text-gray-400">
               Resume
             </a>
           </div>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gray-400">
+            <a
+              href="https://github.com/Aung-myat-min"
+              className="hover:text-gray-400"
+            >
               <FontAwesomeIcon
                 className="leftNavIcons rounded-lg"
                 icon={faGithub}
               ></FontAwesomeIcon>
             </a>
-            <a href="#" className="hover:text-gray-400">
+            <a
+              href="https://www.linkedin.com/in/aung-myat-min-13higk/"
+              className="hover:text-gray-400"
+            >
               <FontAwesomeIcon
                 className="leftNavIcons rounded-lg"
                 icon={faLinkedinIn}
               ></FontAwesomeIcon>
             </a>
-            <a href="#" className="hover:text-gray-400">
+            <a
+              href="https://twitter.com/AMMtheCoder"
+              className="hover:text-gray-400"
+            >
               <FontAwesomeIcon
                 className="leftNavIcons rounded-lg"
                 icon={faTwitter}

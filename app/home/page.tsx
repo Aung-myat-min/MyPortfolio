@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMousePointer } from "@fortawesome/free-solid-svg-icons";
 import "../app.css";
 import profilePic from "../images/pf.jpg";
+import SkillBandages from "./components/SkillBandages";
 
 export default function Home() {
   return (
@@ -44,27 +45,16 @@ export default function Home() {
           <section className="skills">
             <h1>Skills</h1>
             <div className="flex flex-wrap">
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
-              <div className="w-fit px-5 flex items-center rounded-xl h-10 bg-gray-200 text-gray-500 m-2">
-                <p>React.js</p>
-              </div>
+              <SkillBandages language="React" />
+              <SkillBandages language="HTML" />
+              <SkillBandages language="CSS" />
+              <SkillBandages language="JavaScript" />
+              <SkillBandages language="Python" />
+              <SkillBandages language="Java" />
+              <SkillBandages language="MongoDB" />
+              <SkillBandages language="NextJS" />
+              <SkillBandages language="NodeJS" />
+              <SkillBandages language="SQL" />
             </div>
           </section>
           <section className="resume flex justify-around items-center">
