@@ -18,8 +18,8 @@ export default function MyProject(props: {
           {props.projecttitle}
         </h1>
       </div>
-      <p>{props.description}</p>
-      <div className="flex">
+      <p>&#9;{props.description}</p>
+      <div className="flex mt-3">
         {/* take in lists of languages and parse them into SkillBandages components */}
         {props.languages.map((language, index) => (
           <SkillBandages language={language} key={index} />

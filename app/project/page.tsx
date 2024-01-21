@@ -75,7 +75,7 @@ export default function Project() {
           </p>
           <a
             href="mailto:koaungmyatmin0@gmail.com"
-            className="bg-gray-100 w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3"
+            className="bg-gray-100 w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3 hover:bg-black hover:text-white"
           >
             Get in touch
           </a>

@@ -12,15 +12,20 @@
 #glitchContainer {
   background-color: black;
   width: 80%;
-  margin: 0 auto;
+  margin: 2vh auto;
   border-radius: 30px;
+  text-align: center;
+  padding: 6vh 0;
+  overflow: hidden;
+  border: 4px black double;
 }
 .glitch {
   color: white;
   font-size: 50px;
   position: relative;
-  width: 400px;
+  /* width: 400px; */
   margin: 0 auto;
+  display: inline-block;
 }
 @keyframes noise-anim {
   0% {
