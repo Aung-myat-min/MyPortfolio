@@ -16,7 +16,7 @@ export default function Project() {
     {} as {
       [key: string]: string[];
     }
-  ); // State to store languages data
+  );
   const fetchData = async () => {
     const res = await fetch("/api/project");
     const data = await res.json();
