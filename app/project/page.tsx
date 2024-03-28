@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import MyProject from "./components/project";
-import axios from "axios";
 import myLogo from "../../public/MyLOGO.jpg";
 import Image from "next/image";
 import "./page.css";
@@ -17,18 +16,36 @@ export default function Project() {
       [key: string]: string[];
     }
   );
+
+  const [loading, setLoading] = useState(true); // Track loading state
+
   const fetchData = async () => {
-    const res = await fetch("/api/project");
-    const data = await res.json();
-    const projectTitles = data.repositories;
-    const descriptions = data.descriptions;
-    const languagesData: { [key: string]: string[] } = data.languages;
-    setProjectData({ projectTitles, descriptions });
-    setLanguagesData(languagesData);
+    try {
+      const res = await fetch("/api/project");
+      const data = await res.json();
+      const projectTitles = data.repositories;
+      const descriptions = data.descriptions;
+      const languagesData: { [key: string]: string[] } = data.languages;
+      setProjectData({ projectTitles, descriptions });
+      setLanguagesData(languagesData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Set loading state to false when data fetching completes
+    }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-full text-center text-6xl flex items-center justify-center">
+        Loading...
+      </div>
+    ); // Display loading indicator
+  }
 
   return (
     <div className="flex justify-between" style={{ margin: "22px 0" }}>
