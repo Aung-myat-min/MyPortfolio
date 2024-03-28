@@ -17,41 +17,17 @@ export default function Project() {
       [key: string]: string[];
     }
   ); // State to store languages data
-
+  const fetchData = async () => {
+    const res = await fetch("/api/project");
+    const data = await res.json();
+    const projectTitles = data.repositories;
+    const descriptions = data.descriptions;
+    const languagesData: { [key: string]: string[] } = data.languages;
+    setProjectData({ projectTitles, descriptions });
+    setLanguagesData(languagesData);
+  };
   useEffect(() => {
-    fetch("https://api.github.com/users/Aung-myat-min/repos")
-      .then(async (response) => {
-        const data = await response.json();
-        const projectTitles = data.map((repo: any) => repo.name);
-        const descriptions = data.map((repo: any) => repo.description);
-
-        setProjectData({ projectTitles, descriptions });
-
-        // Fetch languages for each repository
-        const fetchLanguagesPromises = projectTitles.map(
-          (projectTitle: string) =>
-            axios.get(
-              `https://api.github.com/repos/Aung-myat-min/${projectTitle}/languages`
-            )
-        );
-
-        Promise.all(fetchLanguagesPromises)
-          .then((languagesResponses) => {
-            const languagesData: { [key: string]: string[] } = {};
-            languagesResponses.forEach((languagesResponse, index) => {
-              const projectTitle = projectTitles[index];
-              const languages = Object.keys(languagesResponse.data);
-              languagesData[projectTitle] = languages;
-            });
-            setLanguagesData(languagesData);
-          })
-          .catch((error) => {
-            console.error("Error fetching languages:", error);
-          });
-      })
-      .catch((error) => {
-        console.error("Error fetching repositories:", error);
-      });
+    fetchData();
   }, []);
 
   return (
