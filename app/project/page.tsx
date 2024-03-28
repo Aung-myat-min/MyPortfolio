@@ -19,11 +19,11 @@ export default function Project() {
   ); // State to store languages data
 
   useEffect(() => {
-    axios
-      .get("https://api.github.com/users/Aung-myat-min/repos")
-      .then((response) => {
-        const projectTitles = response.data.map((repo: any) => repo.name);
-        const descriptions = response.data.map((repo: any) => repo.description);
+    fetch("https://api.github.com/users/Aung-myat-min/repos")
+      .then(async (response) => {
+        const data = await response.json();
+        const projectTitles = data.map((repo: any) => repo.name);
+        const descriptions = data.map((repo: any) => repo.description);
 
         setProjectData({ projectTitles, descriptions });
 

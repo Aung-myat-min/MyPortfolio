@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -69,6 +70,7 @@ export default function RootLayout({
             </a>
           </div>
         </nav>
+        <Analytics />
         {children}
       </body>
     </html>
