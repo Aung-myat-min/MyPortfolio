@@ -9,7 +9,7 @@ export default function MyProject(props: {
 }) {
   return (
     <section
-      className={` rounded-xl flex flex-col justify-around p-5`}
+      className={` rounded-xl flex flex-col justify-around p-5 dark:bg-gray-900`}
       // style={{ backgroundColor: "randomBgColor" }}
       id="project"
     >

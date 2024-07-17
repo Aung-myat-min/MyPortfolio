@@ -1,9 +1,7 @@
 import axios from "axios";
-import { unstable_noStore } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  unstable_noStore();
   try {
     const apiKey = process.env.API_KEY;
     const response = await axios.get(

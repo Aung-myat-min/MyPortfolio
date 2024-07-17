@@ -1,9 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import MyProject from "./components/project";
 import myLogo from "../../public/MyLOGO.jpg";
 import Image from "next/image";
 import "./page.css";
+import ErrorBoundary from "./components/ErorBountry";
 
 export default function Project() {
   const [projectData, setProjectData] = useState({
@@ -68,25 +69,29 @@ export default function Project() {
           </p>
           <a
             href="mailto:koaungmyatmin0@gmail.com"
-            className="bg-gray-100 w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3 hover:bg-black hover:text-white"
+            className="bg-gray-100 w-fit px-3 h-10 items-center flex rounded-xl text-sm mt-3 hover:bg-black hover:text-white dark:text-black dark:hover:text-white dark:hover:border-white dark:hover:border-2"
           >
             Get in touch
           </a>
         </div>
       </div>
       <div
-        className="border rounded-xl overflow-auto"
+        className="border rounded-xl overflow-auto no-scrollbar"
         style={{ width: "48%", height: "84vh" }}
       >
         <h1 className="text-center mt-3 font-bold text-3xl">My Projects</h1>
-        {projectData.projectTitles.map((projectTitle, index) => (
-          <MyProject
-            languages={languagesData[projectTitle] || []} // Use languages from state
-            projecttitle={projectTitle}
-            description={projectData.descriptions[index]}
-            key={index}
-          />
-        ))}
+        <ErrorBoundary>
+          <Suspense fallback="loading...">
+            {projectData.projectTitles.map((projectTitle, index) => (
+              <MyProject
+                languages={languagesData[projectTitle] || []} // Use languages from state
+                projecttitle={projectTitle}
+                description={projectData.descriptions[index]}
+                key={index}
+              />
+            ))}
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );

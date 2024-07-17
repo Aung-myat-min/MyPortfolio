@@ -24,10 +24,10 @@ export default function Home() {
         </div>
       </section>
       <div className="mySkills">
-        <section>
+        <section className="dark:bg-gray-800">
           <h1>My Projects</h1>
           <div className="highlight rounded-lg">
-            <h2 className="rounded-lg">HTML</h2>
+            <h2 className="rounded-lg">HTML, CSS</h2>
             <h3>Are you hungry?</h3>
             <p>
               This is a simple website built with HTML and CSS. And it is very
@@ -57,13 +57,15 @@ export default function Home() {
               <SkillBandages language="SQL" />
             </div>
           </section>
-          <section className="resume flex justify-around items-center">
+          <section className="resume flex justify-around items-center dark:bg-gray-800">
             <h1>Resume</h1>
-            <div className="flex w-fit h-16 rounded-xl bg-black  items-center p-5">
-              <p className="text-white">More details about my carrier</p>
+            <div className="flex w-fit h-16 rounded-xl bg-black  items-center p-5 dark:bg-white">
+              <p className="text-white dark:text-black">
+                More details about my carrier
+              </p>
               <a
                 href="#"
-                className="ml-5 bg-white px-3 h-10 items-center flex rounded-xl text-sm w-fit"
+                className="ml-5 bg-white px-3 h-10 items-center flex rounded-xl text-sm w-fit dark:bg-black"
               >
                 More Over
               </a>
